@@ -20,6 +20,25 @@ return {
       return opts
     end,
   },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
+      filesystem = {
+        bind_to_cwd = false,
+        follow_current_file = true,
+        filtered_items = {
+          visible = true,
+          hide_dotfiles = true,
+          hide_gitignored = true,
+          hide_by_name = {
+            ".DS_Store",
+            "thumbs.db",
+            "node_modules",
+          },
+        },
+      },
+    }
+  }
   -- You can disable default plugins as follows:
   -- { "max397574/better-escape.nvim", enabled = false },
   --

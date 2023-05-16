@@ -9,4 +9,27 @@ return {
   --     require("lsp_signature").setup()
   --   end,
   -- },
+  {
+    'charkuils/nvim-whisky'
+  },
+
+  {
+    'Alexis12119/nightly.nvim',
+    config = function()
+      require("nightly").setup({
+        color = "black", -- blue, green or red
+        transparent = false,
+        styles = {
+          comments = { italic = true },
+          functions = { italic = false },
+          keywords = { italic = false },
+          variables = { italic = false },
+        },
+        highlights = {
+          -- add or override highlights
+          -- Normal = { bg = "#000000" }
+        },
+      })
+    end
+  }
 }
