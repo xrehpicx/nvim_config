@@ -94,5 +94,45 @@ return {
     vim.g.neovide_cursor_antialiasing = true
 
     vim.g.neovide_input_use_logo = false
+
+    if vim.g.vscode then
+      -- VSCode extension
+    else
+      -- ordinary Neovim
+    end
+    require('lspconfig').tailwindcss.setup {
+      settings = {
+        scss = { validate = false },
+        editor = {
+          quickSuggestions = { strings = true },
+          autoClosingQuotes = 'always',
+        },
+        tailwindCSS = {
+          experimental = {
+            classRegex = {
+              'cn`([^`]*)',          -- tw`...`
+              'cn="([^"]*)',         -- <div tw="..." />
+              'cn={"([^"}]*)',       -- <div tw={"..."} />
+              'cn\\.\\w+`([^`]*)',   -- tw.xxx`...`
+              'cn\\(.*?\\)`([^`]*)', -- tw(Component)`...`
+              'cva`([^`]*)',         -- tw`...`
+              'cva="([^"]*)',        -- <div tw="..." />
+              'cva={"([^"}]*)',      -- <div tw={"..."} />
+              'cva\\.\\w+`([^`]*)',  -- tw.xxx`...`
+              'cva(*',               -- tw(Component)`...`
+              'tw`([^`]*)',          -- tw`...`
+              'tw="([^"]*)',         -- <div tw="..." />
+              'tw={"([^"}]*)',       -- <div tw={"..."} />
+              'tw\\.\\w+`([^`]*)',   -- tw.xxx`...`
+              'tw\\(.*?\\)`([^`]*)', -- tw(Component)`...`
+            },
+          },
+          includeLanguages = {
+            typescript = 'javascript',
+            typescriptreact = 'javascript',
+          },
+        },
+      },
+    }
   end,
 }

@@ -5,12 +5,7 @@ return {
   -- available plugins can be found at https://github.com/AstroNvim/astrocommunity
 
   { import = "astrocommunity.pack.rust" },
-  { import = "astrocommunity.colorscheme.oxocarbon" },
-  { import = "astrocommunity.colorscheme.nightfox" },
-  { import = "astrocommunity.colorscheme.rose-pine" },
   { import = "astrocommunity.colorscheme.catppuccin" },
-  { import = "astrocommunity.colorscheme.tokyonight" },
-  { import = "astrocommunity.colorscheme.poimandres" },
   { import = "astrocommunity.editing-support.zen-mode-nvim" },
   { import = "astrocommunity.motion.leap-nvim" },
   {

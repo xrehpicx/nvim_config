@@ -1,6 +1,11 @@
 return {
   "nvim-treesitter/nvim-treesitter",
   opts = {
-    -- ensure_installed = { "lua" },
+    ensure_installed = { "lua", "typescript", "javascript" },
+    autotag = {
+      enable = true,
+      -- filetypes = { "html", "xml", "tsx", "jsx" },
+    }
   },
+
 }
