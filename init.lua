@@ -40,7 +40,7 @@ return {
         -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
         -- "lua_ls",
       },
-      timeout_ms = 1000, -- default format timeout
+      timeout_ms = 1500, -- default format timeout
       -- filter = function(client) -- fully override the default formatting function
       --   return true
       -- end
@@ -76,6 +76,7 @@ return {
     --     ["~/%.config/foo/.*"] = "fooscript",
     --   },
     -- }
+    vim.g.neoformat_try_node_exe = 1
     local alpha = function()
       return string.format("%x", math.floor(255 * (vim.g.transparency or 0.8)))
     end
@@ -100,6 +101,39 @@ return {
     else
       -- ordinary Neovim
     end
+
+
+
+    ---Common perf related flags for all the LSP servers
+    local flags = {
+      allow_incremental_sync = true,
+      debounce_text_changes = 200,
+    }
+
+    ---Common capabilities including lsp snippets and autocompletion
+
+    require('lspconfig').rust_analyzer.setup({
+      flags = flags,
+      settings = {
+        ['rust-analyzer'] = {
+          cargo = {
+            allFeatures = true,
+            ["ssr"] = true
+          },
+          checkOnSave = {
+            allFeatures = true,
+            command = 'clippy',
+          },
+          procMacro = {
+            ignored = {
+              ['async-trait'] = { 'async_trait' },
+              ['napi-derive'] = { 'napi' },
+              ['async-recursion'] = { 'async_recursion' },
+            },
+          },
+        },
+      },
+    })
     require('lspconfig').tailwindcss.setup {
       settings = {
         scss = { validate = false },
@@ -107,7 +141,38 @@ return {
           quickSuggestions = { strings = true },
           autoClosingQuotes = 'always',
         },
+        filetypes = {
+          "css",
+          "scss",
+          "sass",
+          "html",
+          "heex",
+          "elixir",
+          "eruby",
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "rust",
+          "svelte",
+        },
+
         tailwindCSS = {
+          allow_filetypes = {
+            "css",
+            "scss",
+            "sass",
+            "html",
+            "heex",
+            "elixir",
+            "eruby",
+            "javascript",
+            "javascriptreact",
+            "typescript",
+            "typescriptreact",
+            "rust",
+            "svelte",
+          },
           experimental = {
             classRegex = {
               'cn`([^`]*)',          -- tw`...`
@@ -134,5 +199,7 @@ return {
         },
       },
     }
+    vim.api.nvim_set_option('conceallevel', 2)
+    -- vim.api.nvim_exec("set conceallevel=3", true)
   end,
 }
