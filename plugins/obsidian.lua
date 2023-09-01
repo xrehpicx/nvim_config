@@ -125,11 +125,11 @@ return {
 
     -- Optional, override the 'gf' keymap to utilize Obsidian's search functionality.
     -- see also: 'follow_url_func' config option above.
-    vim.keymap.set("n", "gf", function()
+    vim.keymap.set("n", "gm", function()
       if require("obsidian").util.cursor_on_markdown_link() then
         return "<cmd>ObsidianFollowLink<CR>"
       else
-        return "gf"
+        return "gm"
       end
     end, { noremap = false, expr = true })
   end
