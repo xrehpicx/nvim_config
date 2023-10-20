@@ -7,6 +7,9 @@ return {
     -- Check supported formatters and linters
     -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
     -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
+    config.condition = function(utils)
+			return utils.root_has_file({ ".eslintrc.js", ".eslintrc.json", ".eslintrc.cjs" })
+		end
     config.sources = {
       -- Set a formatter
       -- null_ls.builtins.formatting.stylua,

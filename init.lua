@@ -17,7 +17,7 @@ return {
     },
   },
   -- Set colorscheme to use
-  colorscheme = "catppuccin",
+  colorscheme = "catppuccin-mocha",
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
     virtual_text = true,
@@ -47,7 +47,10 @@ return {
     },
     -- enable servers that you already have installed without mason
     servers = {
-      -- "pyright"
+      "lua_ls",
+      "rust_analyzer",
+      "tailwindcss",
+      "tsserver",
     },
   },
   -- Configure require("lazy").setup() options
@@ -137,6 +140,7 @@ return {
     require('lspconfig').tailwindcss.setup {
       settings = {
         scss = { validate = false },
+        html = {validate = true} ,
         editor = {
           quickSuggestions = { strings = true },
           autoClosingQuotes = 'always',
@@ -195,11 +199,13 @@ return {
           includeLanguages = {
             typescript = 'javascript',
             typescriptreact = 'javascript',
+            html = 'html',
           },
         },
       },
     }
     vim.api.nvim_set_option('conceallevel', 2)
+
     -- vim.api.nvim_exec("set conceallevel=3", true)
   end,
 }
