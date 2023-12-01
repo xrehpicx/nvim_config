@@ -38,6 +38,12 @@ return {
     ["<leader>ac"] = { "<cmd>ChatGPTCompleteCode<cr>", desc = "Complete Code" },
     ["<leader>ax"] = { "<cmd>ChatGPTRun explain_code<cr>", desc = "Explain code" },
     ["<leader>af"] = { "<cmd>ChatGPTRun fix_bugs<cr>", desc = "Fix bugs" },
+    -- Tmux navigator overides
+    ["<C-h>"] = { "<cmd>TmuxNavigateLeft<cr>", desc = "Navigate left" },
+    ["<C-j>"] = { "<cmd>TmuxNavigateDown<cr>", desc = "Navigate down" },
+    ["<C-k>"] = { "<cmd>TmuxNavigateUp<cr>", desc = "Navigate up" },
+    ["<C-l>"] = { "<cmd>TmuxNavigateRight<cr>", desc = "Navigate right" },
+    
   },
   v = {
 

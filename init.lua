@@ -51,6 +51,7 @@ return {
       "rust_analyzer",
       "tailwindcss",
       "tsserver",
+      "gopls"
     },
   },
   -- Configure require("lazy").setup() options
@@ -79,6 +80,7 @@ return {
     --     ["~/%.config/foo/.*"] = "fooscript",
     --   },
     -- }
+
     vim.g.neoformat_try_node_exe = 1
     local alpha = function()
       return string.format("%x", math.floor(255 * (vim.g.transparency or 0.8)))
