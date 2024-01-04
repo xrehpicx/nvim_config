@@ -1,16 +1,16 @@
 return {
   -- Configure AstroNvim updates
   updater = {
-    remote = "origin",     -- remote to use
-    channel = "stable",    -- "stable" or "nightly"
-    version = "latest",    -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
-    branch = "nightly",    -- branch name (NIGHTLY ONLY)
-    commit = nil,          -- commit hash (NIGHTLY ONLY)
-    pin_plugins = nil,     -- nil, true, false (nil will pin plugins on stable only)
-    skip_prompts = false,  -- skip prompts about breaking changes
+    remote = "origin", -- remote to use
+    channel = "stable", -- "stable" or "nightly"
+    version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
+    branch = "nightly", -- branch name (NIGHTLY ONLY)
+    commit = nil, -- commit hash (NIGHTLY ONLY)
+    pin_plugins = nil, -- nil, true, false (nil will pin plugins on stable only)
+    skip_prompts = false, -- skip prompts about breaking changes
     show_changelog = true, -- show the changelog after performing an update
-    auto_quit = false,     -- automatically quit the current session after a successful update
-    remotes = {            -- easily add new remotes to track
+    auto_quit = false, -- automatically quit the current session after a successful update
+    remotes = { -- easily add new remotes to track
       --   ["remote_name"] = "https://remote_url.come/repo.git", -- full remote url
       --   ["remote2"] = "github_user/repo", -- GitHub user/repo shortcut,
       --   ["remote3"] = "github_user", -- GitHub user assume AstroNvim fork
@@ -28,10 +28,7 @@ return {
     formatting = {
       -- control auto formatting on save
       format_on_save = {
-        enabled = true,     -- enable or disable format on save globally
-        allow_filetypes = { -- enable format on save for specified filetypes only
-          -- "go",
-        },
+        enabled = true, -- enable or disable format on save globally
         ignore_filetypes = { -- disable format on save for specified filetypes
           -- "python",
         },
@@ -46,13 +43,13 @@ return {
       -- end
     },
     -- enable servers that you already have installed without mason
-    servers = {
-      "lua_ls",
-      "rust_analyzer",
-      "tailwindcss",
-      "tsserver",
-      "gopls"
-    },
+    -- servers = {
+    --   "lua_ls",
+    --   "rust_analyzer",
+    --   "tailwindcss",
+    --   "tsserver",
+    --   "gopls",
+    -- },
   },
   -- Configure require("lazy").setup() options
   lazy = {
@@ -82,9 +79,7 @@ return {
     -- }
 
     vim.g.neoformat_try_node_exe = 1
-    local alpha = function()
-      return string.format("%x", math.floor(255 * (vim.g.transparency or 0.8)))
-    end
+    local alpha = function() return string.format("%x", math.floor(255 * (vim.g.transparency or 0.8))) end
     -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
     -- vim.g.neovide_cursor_vfx_mode = "railgun"
     vim.g.neovide_cursor_vfx_mode = "sonicboom"
@@ -107,45 +102,43 @@ return {
       -- ordinary Neovim
     end
 
-
-
     ---Common perf related flags for all the LSP servers
     local flags = {
       allow_incremental_sync = true,
-      debounce_text_changes = 200,
+      debounce_text_changes = 1000,
     }
 
     ---Common capabilities including lsp snippets and autocompletion
 
-    require('lspconfig').rust_analyzer.setup({
-      flags = flags,
-      settings = {
-        ['rust-analyzer'] = {
-          cargo = {
-            allFeatures = true,
-            ["ssr"] = true
-          },
-          checkOnSave = {
-            allFeatures = true,
-            command = 'clippy',
-          },
-          procMacro = {
-            ignored = {
-              ['async-trait'] = { 'async_trait' },
-              ['napi-derive'] = { 'napi' },
-              ['async-recursion'] = { 'async_recursion' },
-            },
-          },
-        },
-      },
-    })
-    require('lspconfig').tailwindcss.setup {
+    -- require("lspconfig").rust_analyzer.setup {
+    --   flags = flags,
+    --   settings = {
+    --     ["rust-analyzer"] = {
+    --       cargo = {
+    --         allFeatures = true,
+    --         ["ssr"] = true,
+    --       },
+    --       checkOnSave = {
+    --         allFeatures = true,
+    --         command = "clippy",
+    --       },
+    --       procMacro = {
+    --         ignored = {
+    --           ["async-trait"] = { "async_trait" },
+    --           ["napi-derive"] = { "napi" },
+    --           ["async-recursion"] = { "async_recursion" },
+    --         },
+    --       },
+    --     },
+    --   },
+    -- }
+    require("lspconfig").tailwindcss.setup {
       settings = {
         scss = { validate = false },
-        html = {validate = true} ,
+        html = { validate = true },
         editor = {
           quickSuggestions = { strings = true },
-          autoClosingQuotes = 'always',
+          autoClosingQuotes = "always",
         },
         filetypes = {
           "css",
@@ -181,32 +174,31 @@ return {
           },
           experimental = {
             classRegex = {
-              'cn`([^`]*)',          -- tw`...`
-              'cn="([^"]*)',         -- <div tw="..." />
-              'cn={"([^"}]*)',       -- <div tw={"..."} />
-              'cn\\.\\w+`([^`]*)',   -- tw.xxx`...`
-              'cn\\(.*?\\)`([^`]*)', -- tw(Component)`...`
-              'cva`([^`]*)',         -- tw`...`
-              'cva="([^"]*)',        -- <div tw="..." />
-              'cva={"([^"}]*)',      -- <div tw={"..."} />
-              'cva\\.\\w+`([^`]*)',  -- tw.xxx`...`
-              'cva(*',               -- tw(Component)`...`
-              'tw`([^`]*)',          -- tw`...`
-              'tw="([^"]*)',         -- <div tw="..." />
-              'tw={"([^"}]*)',       -- <div tw={"..."} />
-              'tw\\.\\w+`([^`]*)',   -- tw.xxx`...`
-              'tw\\(.*?\\)`([^`]*)', -- tw(Component)`...`
+              "cn`([^`]*)", -- tw`...`
+              'cn="([^"]*)', -- <div tw="..." />
+              'cn={"([^"}]*)', -- <div tw={"..."} />
+              "cn\\.\\w+`([^`]*)", -- tw.xxx`...`
+              "cn\\(.*?\\)`([^`]*)", -- tw(Component)`...`
+              "cva`([^`]*)", -- tw`...`
+              'cva="([^"]*)', -- <div tw="..." />
+              'cva={"([^"}]*)', -- <div tw={"..."} />
+              "cva\\.\\w+`([^`]*)", -- tw.xxx`...`
+              "cva(*", -- tw(Component)`...`
+              "tw`([^`]*)", -- tw`...`
+              'tw="([^"]*)', -- <div tw="..." />
+              'tw={"([^"}]*)', -- <div tw={"..."} />
+              "tw\\.\\w+`([^`]*)", -- tw.xxx`...`
+              "tw\\(.*?\\)`([^`]*)", -- tw(Component)`...`
             },
           },
           includeLanguages = {
-            typescript = 'javascript',
-            typescriptreact = 'javascript',
-            html = 'html',
+            typescript = "javascript",
+            typescriptreact = "javascript",
+            html = "html",
           },
         },
       },
     }
-    vim.api.nvim_set_option('conceallevel', 2)
 
     -- vim.api.nvim_exec("set conceallevel=3", true)
   end,

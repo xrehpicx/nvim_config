@@ -13,13 +13,13 @@ return {
     ["<leader>mf"] = { "<cmd>ObsidianSearch<cr>", desc = "Search notes" },
     ["<leader>mt"] = { "<cmd>ObsidianToday<cr>", desc = "Go to todays note" },
     ["<leader>my"] = { "<cmd>ObsidianYesterday<cr>", desc = "Go to yesterdays note" },
+
     ["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
     ["<leader>bD"] = {
       function()
-        require("astronvim.utils.status").heirline.buffer_picker(function(bufnr)
-          require("astronvim.utils.buffer").close(
-            bufnr)
-        end)
+        require("astronvim.utils.status").heirline.buffer_picker(
+          function(bufnr) require("astronvim.utils.buffer").close(bufnr) end
+        )
       end,
       desc = "Pick to close",
     },
@@ -43,7 +43,6 @@ return {
     ["<C-j>"] = { "<cmd>TmuxNavigateDown<cr>", desc = "Navigate down" },
     ["<C-k>"] = { "<cmd>TmuxNavigateUp<cr>", desc = "Navigate up" },
     ["<C-l>"] = { "<cmd>TmuxNavigateRight<cr>", desc = "Navigate right" },
-    
   },
   v = {
 
@@ -55,10 +54,11 @@ return {
     ["<leader>ac"] = { "<cmd>ChatGPTCompleteCode<cr>", desc = "Complete Code" },
     ["<leader>ax"] = { "<cmd>ChatGPTRun explain_code<cr>", desc = "Explain code" },
     ["<leader>af"] = { "<cmd>ChatGPTRun fix_bugs<cr>", desc = "Fix bugs" },
+    --
+    -- ["jk"] = { "<esc>", desc = "Exit visual mode" },
   },
   t = {
     -- setting a mapping to false will disable it
     -- ["<esc>"] = false,
   },
-
 }
