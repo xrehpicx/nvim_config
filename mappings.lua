@@ -43,6 +43,8 @@ return {
     ["<C-j>"] = { "<cmd>TmuxNavigateDown<cr>", desc = "Navigate down" },
     ["<C-k>"] = { "<cmd>TmuxNavigateUp<cr>", desc = "Navigate up" },
     ["<C-l>"] = { "<cmd>TmuxNavigateRight<cr>", desc = "Navigate right" },
+
+    ["<leader>r"] = { '"', desc = "Switch registers" },
   },
   v = {
 
@@ -56,9 +58,12 @@ return {
     ["<leader>af"] = { "<cmd>ChatGPTRun fix_bugs<cr>", desc = "Fix bugs" },
     --
     -- ["jk"] = { "<esc>", desc = "Exit visual mode" },
+    -- Mapping for register switching
   },
   t = {
     -- setting a mapping to false will disable it
     -- ["<esc>"] = false,
+    --
+    ["<C-w>a"] = { "<C-\\><C-n><C-w>h", desc = "Escape terminal mode" },
   },
 }
